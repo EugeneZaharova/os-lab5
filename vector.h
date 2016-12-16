@@ -6,24 +6,29 @@
 #include <cstdlib>
 #include <memory>
 
-template <class T> class Vector {
+typedef int Type;
+
+class Vector {
 private:
-	T* PHead;
+	Type *PHead;
 	std::size_t PSize;
 
 public:
 	Vector(void);
 	Vector(std::size_t size);
-	~Vector(void);
+	virtual ~Vector(void);
 
-	std::size_t Size(void);
-	void Resize(std::size_t size);
+	virtual std::size_t Size(void);
+	virtual void Resize(std::size_t size);
 
-	T GetValue(std::size_t pos);
-	void SetValue(T elem, std::size_t pos);
+	virtual Type GetValue(std::size_t pos);
+	virtual void SetValue(Type elem, std::size_t pos);
 
-	T& operator[](std::size_t pos);
-	const T& operator[](std::size_t pos) const;
+	virtual Type& operator[](std::size_t pos);
+	virtual const Type& operator[](std::size_t pos) const;
 };
+
+typedef Vector *new_vector_t(void);
+typedef void delete_vector_t(Vector *tmp);
 
 #endif

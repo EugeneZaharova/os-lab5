@@ -5,32 +5,33 @@
 
 using namespace std;
 
-template <class T> Vector<T>::Vector(void) {
+Vector::Vector(void) {
 	this->PSize = 0;
 	this->PHead = NULL;
 }
 
-template <class T> Vector<T>::Vector(size_t size) {
-	this->PHead = (T*) calloc(size, sizeof(T));
+Vector::Vector(size_t size) {
+	this->PHead = (Type*) calloc(size, sizeof(Type));
 	this->PSize = size;
 }
 
-template <class T> Vector<T>::~Vector(void) {
+Vector::~Vector(void) {
 	free(this->PHead);
+	//cout << "Destructor_test" << endl;
 }
 
 
-template <class T> size_t Vector<T>::Size(void) {
+size_t Vector::Size(void) {
 	return this->PSize;
 }
 
-template <class T> void Vector<T>::Resize(size_t size) {
-	this->PHead = (T*) realloc(this->PHead, size * sizeof(T));
+void Vector::Resize(size_t size) {
+	this->PHead = (Type*) realloc(this->PHead, size * sizeof(Type));
 	this->PSize = size;
 }
 
-template <class T> T Vector<T>::GetValue(size_t pos) {
-	T res;
+Type Vector::GetValue(size_t pos) {
+	Type res;
 	if (pos < this->PSize) {
 		res = this->PHead[pos];
 	} else {
@@ -39,7 +40,7 @@ template <class T> T Vector<T>::GetValue(size_t pos) {
 	return res;
 }
 
-template <class T> void Vector<T>::SetValue(T elem, size_t pos) {
+void Vector::SetValue(Type elem, size_t pos) {
 	if (pos < this->PSize) {
 		this->PHead[pos] = elem;
 	} else {
@@ -47,11 +48,17 @@ template <class T> void Vector<T>::SetValue(T elem, size_t pos) {
 	}
 }
 
-template <class T> T& Vector<T>::operator[](size_t pos) {
-	return this->PHead[pos];
-}
-template <class T> const T& Vector<T>::operator[](size_t pos) const {
+Type& Vector::operator[](size_t pos) {
 	return this->PHead[pos];
 }
 
-template class Vector<int>;
+const Type& Vector::operator[](size_t pos) const {
+	return this->PHead[pos];
+}
+
+extern "C" Vector *new_vector() {
+	return new Vector;
+}
+extern "C" void delete_vector(Vector *tmp) {
+	delete tmp;
+}
