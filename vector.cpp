@@ -17,7 +17,6 @@ Vector::Vector(size_t size) {
 
 Vector::~Vector(void) {
 	free(this->PHead);
-	//cout << "Destructor_test" << endl;
 }
 
 

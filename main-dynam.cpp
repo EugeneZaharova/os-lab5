@@ -20,14 +20,17 @@ int main(void) {
 	}
 
 
-	size_t size = 5;
+	size_t size;
 	Vector *arr = new_vector();
+	cout << "Arr size:" << endl;
+	cin >> size;
 	arr->Resize(size);
+	cout << "Arr elements (" << size << ")" << endl;
 	for (size_t i = 0; i < arr->Size(); i++) {
-		arr->SetValue(i, i);
+		cin >> (*arr)[i];
 	}
 	for (size_t i = 0; i < arr->Size(); i++) {
-		cout << arr->GetValue(i) << ' ';
+		cout << (*arr)[i] << ' ';
 	}
 	cout << endl;
 	delete_vector(arr);

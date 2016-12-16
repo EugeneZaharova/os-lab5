@@ -4,11 +4,14 @@
 using namespace std;
 
 int main(void) {
-	size_t size = 5;
+	size_t size;
 	Vector arr;
+	cout << "Arr size:" << endl;
+	cin >> size;
 	arr.Resize(size);
+	cout << "Arr elements (" << size << ")" << endl;
 	for (size_t i = 0; i < arr.Size(); i++) {
-		arr[i] = i;
+		cin >> arr[i];
 	}
 	for (size_t i = 0; i < arr.Size(); i++) {
 		cout << arr[i] << ' ';
